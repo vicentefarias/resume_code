@@ -1,0 +1,141 @@
+<html>
+  <style>
+    body{ 
+      font-size: 15pt;
+      font-family: arial;
+      background-color: rgb(255, 255, 255);
+      color: rgb(0, 0, 0);
+      align-self: mid;
+    }
+    h1,h2,h3,h4,h5{
+        color: rgb(0, 126, 222);
+    }
+    .content {
+  max-width: 500px;
+  margin: auto;
+}
+  </style>
+
+
+<body>
+<div class="content">
+<h1> {{data[0][0][1]}}'s Page</h3>
+<h3> About Me</h3>
+<p>
+    uni: {{data[0][0][0]}} <br>
+    name: {{data[0][0][1]}} <br>
+    email: {{data[0][0][2]}} <br>
+    year: {{data[0][0][3]}} <br>
+    <br>
+<h3> Update Info</h3>
+    <form method="POST" action="/updateName"> 
+        <b>Update Name</b> <br>
+    uni: <input type="text" name="uni"> <br>
+    new name: <input type="text" name="newName"> <br>
+    <input type="submit" value="Update">
+    </form><br>
+    <form method="POST" action="/updateEmail"> 
+        <b>Update Email</b> <br>
+    uni: <input type="text" name="uni"> <br>
+    new email: <input type="text" name="newEmail"> <br>
+    <input type="submit" value="Update">
+    </form><br>
+    <form method="POST" action="/updateYear"> 
+        <b>Update Year</b> <br>
+    uni: <input type="text" name="uni"> <br>
+    new year: <input type="text" name="newYear"> <br>
+    <input type="submit" value="Update">
+    </form><br> 
+</p>
+<h3>Search for Class: </h3>
+<form method="POST" action="/search"> 
+    uni: <input type="text" name="uni"> <br>
+    min rating: <input type="number" name="minR"> <br>
+    max rating: <input type="number" name="maxR"> <br>
+    department: <input type="text" name="dept"> <br>
+    name: <input type="text" name="name"> <br>
+    professor: <input type="text" name="prof"> <br>
+    term: <input type="text" name="term"> <br>
+    <input type="submit" name="Search">
+</form>
+<b>Classes: </b><br>
+<ul>
+    {% for n in data[6]: %}
+    {{n}}<br>
+    {% endfor %}    
+</ul>
+<h3>Follow Class: </h3>
+<p>
+    <form method="POST" action="/follow">
+    uni: <input type="text" name="uni"> <br>
+    class name: <input type="text" name="cname"> <br>
+    professor: <input type="text" name="prof"> <br>
+    term: <input type="text" name="term"> <br>
+    <input type="submit" value="Follow">
+    </form>
+</p>
+<h3> Classes followed:</h3>
+    <ul>
+        {% for n in data[2]: %}
+        <li> {{n}} </li>
+        {% endfor %}
+    </ul>
+
+<h3>Class Ratings: </h3>
+    <div>
+        <ul>
+            {% for n in data[1]: %}
+                <li> {{ n }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+<h3>Change Rating:</h3>
+    <form method="POST" action="/rate"> <br>
+        uni: <input type="text" name="uni"> <br>
+        class name: <input type="text" name="cname"> <br>
+        professor: <input type="text" name="prof"> <br>
+        term: <input type="text" name="term"> <br>
+        rating: <input type="number" name="rating"> <br>
+        <input type="submit" value="Rate">
+        </form>
+
+<h3> Posts: </h3>
+<ul>
+    {% for n in data[3] %}
+       <li> {{ n }} </li>
+    {% endfor %}
+</ul>
+
+<h4> Uploaded Posts</h4>
+<ul>
+    {% for n in data[4]: %}
+    <li> {{n}} </li>
+    {% endfor %}
+</ul>
+<b> Add/Upload Post:</b>
+<form method="POST" action="/upload">
+    uni: <input type="text" name="uni"> <br>
+    class name: <input type="text" name="cname"> <br>
+    professor: <input type="text" name="prof"> <br>
+    term: <input type="text" name="term"> <br>
+    comment:  <input type="text" name="com"> <br>
+    <input type="submit" name="Upload"> 
+</form>
+<h4> Downloaded Posts</h4>
+<ul>
+    {% for n in data[5]: %}
+    <li> {{n}} </li>
+    {% endfor %}
+</ul>
+<b> Save/Download Post:</b><br>
+<form method="POST" action="/download"> 
+    uni: <input type="text" name="uni"> <br>
+    class name: <input type="text" name="cname"> <br>
+    professor: <input type="text" name="prof"> <br>
+    term: <input type="text" name="term"> <br> 
+    postNumber: <input type="number" name="pNum"> <br>
+    <input type="submit" name="Download">
+</form>
+</div>
+</body>
+</html>
